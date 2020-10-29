@@ -6,16 +6,16 @@ namespace InterfaceExercicio1.Entities
 {
     class Contrato
     {
-        public int Numero { get; set; }
-        public DateTime Data { get; set; }
-        public double ValorTotal { get; set; }
+        public int NumeroDoContrato { get; set; }
+        public DateTime DataDoContrato { get; set; }
+        public double ValorTotalDoContrato { get; set; }
         public List<Prestacao> Prestacoes { get; private set; }
 
-        public Contrato(int numero, DateTime data, double valorTotal)
+        public Contrato(int numeroContrato, DateTime dataContrato, double valorTotalContrato)
         {
-            Numero = numero;
-            Data = data;
-            ValorTotal = valorTotal;
+            NumeroDoContrato = numeroContrato;
+            DataDoContrato = dataContrato;
+            ValorTotalDoContrato = valorTotalContrato;
             Prestacoes = new List<Prestacao>();
         }
 

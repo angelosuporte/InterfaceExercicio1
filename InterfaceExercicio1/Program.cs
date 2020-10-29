@@ -1,6 +1,7 @@
 ﻿using System;
 using InterfaceExercicio1.Entities;
 using System.Globalization;
+using InterfaceExercicio1.Servico;
 
 namespace InterfaceExercicio1
 {
@@ -8,17 +9,28 @@ namespace InterfaceExercicio1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Informe os dados do ontrato");
+            Console.WriteLine("Informe os dados do contrato");
             Console.Write("Número: ");
-            int num = int.Parse(Console.ReadLine());
+            int numeroContrato = int.Parse(Console.ReadLine());
             Console.Write("Data (dia/mês/ano): ");
-            DateTime data = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
-            Console.Write("Informe o valor do contrato:");
-            double valorTotal = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            DateTime dataContrato = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            Console.Write("Informe o valor do contrato: ");
+            double valorTotalContrato = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Informe o número de prestações: ");
-            int prestacoes = int.Parse(Console.ReadLine());  
-            //falta instanciar o contrato
+            int months = int.Parse(Console.ReadLine());
 
+            Contrato novoContrato = new Contrato(numeroContrato, dataContrato, valorTotalContrato);
+
+            ServicoDoContrato servicoDoContrato = new ServicoDoContrato(new PaypalServico());
+            servicoDoContrato.ProcessamentoDoContrato(novoContrato, months);
+
+            Console.WriteLine("Prestações: ");
+            foreach(Prestacao prestacao in novoContrato.Prestacoes)
+            {
+                Console.WriteLine(prestacao);
+            }
+
+            Console.ReadKey();
         }
     }
 }

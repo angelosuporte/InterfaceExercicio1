@@ -14,10 +14,10 @@ namespace InterfaceExercicio1.Servico
 
         public void ProcessamentoDoContrato(Contrato contrato, int months)
         {
-            double cotaBasica = contrato.ValorTotal / months;
+            double cotaBasica = contrato.ValorTotalDoContrato / months;
             for (int i = 1; i <= months; i++)
             {
-                DateTime data = contrato.Data.AddMonths(i);
+                DateTime data = contrato.DataDoContrato.AddMonths(i);
                 double atualizaCota = cotaBasica + _servicoPagamentoOnline.Juros(cotaBasica, i);
                 double cotaTotal = atualizaCota + _servicoPagamentoOnline.Taxa(atualizaCota);
                 contrato.AddPrestacao(new Prestacao(data, cotaTotal));
